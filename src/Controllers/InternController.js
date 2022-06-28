@@ -1,4 +1,5 @@
 const interModel = require('../Models/InternModel')
+const collegeModel = require('../Models/CollegeModel')
 
 const  createInter = async function(req, res){
     try {
