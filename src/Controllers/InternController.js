@@ -35,10 +35,14 @@ const createIntern = async function (req, res) {
         if (!mobile) {
             return res.status(400).send({ status: false, msg: "mobile is required" })
         }
+        if(typeof req.body.mobile!='number'){
+            return res.status(400).send({status: false ,message: "enter mobile number only in number formate"})
+        }
 
-        if (!(/^([+]\d{2})?\d{10}$/.test(requestBody.mobile))) {
+        if (!(/^[6789]\d{9}$/.test(requestBody.mobile))) {
             return res.status(400).send({ status: false, msg: "invalid mobile number" })
         }
+        
 
         if (!isValid(collegeName)) {
             return res.status(400).send({ status: false, message: "collegeName must be provided" })

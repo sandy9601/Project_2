@@ -23,7 +23,7 @@ const createCollege = async function (req, res) {
         if (!isValidRequestBody(requestBody)) {
             return res.status(400).send({ status: false, message: "Please provide college data" })
         }
-        
+
         const { name, fullName, logoLink } = requestBody
 
         if (!isValid(name)) {
@@ -71,17 +71,15 @@ const getCollege = async function (req, res) {
             return res.status(400).send({ status: false, message: "please provide collegeName" })
         }
 
-        const isCollgePresent = await collegeModel.findOne({ name: collegeName, isDeleted: false })
 
+        const isCollgePresent = await collegeModel.findOne({ name: collegeName, isDeleted: false })    
         if (!isCollgePresent) {
             return res.status(404).send({ status: false, message: "invalid collegeName" })
         }
     
 console.log(isCollgePresent)
         const collegeID = isCollgePresent._id
-
         let intersByCollegeId = await internModel.find({ collegeId: collegeID, isDeleted: false }).select({ _id: 1, email: 1, name: 1, mobile: 1 })
-
 if(intersByCollegeId.length===0){
     intersByCollegeId="No interns In this college"
 }
