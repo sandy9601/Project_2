@@ -12,14 +12,55 @@
   },
   "keywords": [
     "intern",
-    "projects"
+    "projects",
+    "functionup project",
+    "open intern college project"
   ],
-  "author": "Functionup",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sandy9601/Project_2/issues"
+   "author": {
+    "name": "Pritesh Kumar/Sabhiha Khan",
+    "organisation": "FunctionUp",
+    "email": "admissions@function.org",
+    "url": "https://www.functionup.org"
   },
-  "homepage": "https://github.com/sandy9601/Project_2#readme",
+  "license": "ISC",
+  "contributors": [
+    {
+      "name": "Satyam Singh",
+      "email": "singhsatyamjob544@gmail.com",
+      "url": "https://github.com/singhsatyam544/Intern_Project"
+    },
+    {
+      "name": "Sandeep Darshanam",
+      "email": "darshanamsandeep375@gmail.com",
+      "url": "https://github.com/sandy9601/Blog_project_1"
+    },
+    {
+      "name": "Saurabh Shete",
+      "email": "saurabhshete281@gmail.com",
+      "url": "https://github.com/saurabhshete100X/radon"
+    },
+    {
+      "name": "Sameer Swain",
+      "email": "amine.ahool7@outlook.com",
+      "url": "https://github.com/emanlii47"
+    }
+  ],
+  "engines": {
+    "node": ">= 14.0.0",
+    "vscode": "^1.22.0",
+    "npm": ">= 4.0.0"
+  },
+  "os": [
+    "win32",
+    "win64",
+    "linux"
+  ],
+  "readme": "This Project Is For FunctionUp Students",
+  "bugs": {
+    "url": "https://github.com/sandy9601/Project_2/issues",
+    "email": "amine.ahool7@outlook.com"
+  },
+  "homepage": "https://github.com/sandy9601/Project_2",
   "dependencies": {
     "body-parse": "^0.1.0",
     "express": "^4.18.1",
