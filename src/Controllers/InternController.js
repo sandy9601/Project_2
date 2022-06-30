@@ -32,7 +32,7 @@ const createIntern = async function (req, res) {
         if (!/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email)) {
             return res.status(400).send({ status: false, message: "enter a valid email" })
         }
-        if (!isValid(mobile)) {
+        if (!mobile) {
             return res.status(400).send({ status: false, msg: "mobile is required" })
         }
 

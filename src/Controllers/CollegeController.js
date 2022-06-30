@@ -1,9 +1,7 @@
-const { Console } = require('console')
 const collegeModel = require('../models/collegeModel')
 const internModel = require('../models/internModel')
 
-
-
+//Common Validation Function
 const isValid = function (value) {
     if (typeof (value) !='string' || value === null) return false
     if (typeof (value) === 'string' && value.trim().length == 0) return false
@@ -14,19 +12,10 @@ const isValidRequestBody = function (reqBody) {
     return Object.keys(reqBody).length > 0
 }
 const isValidURL = function (str) {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    var pattern = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#()?&//=]*)/igm
+    ); // fragment locator
     return !!pattern.test(str);
   }
-
-// const isValidObjectId = function(objectId){
-//     return mongoose.Schema.Types.isValid(objectId)
-// }
-
 const createCollege = async function (req, res) {
     try {
         const requestBody = req.body
@@ -34,7 +23,7 @@ const createCollege = async function (req, res) {
         if (!isValidRequestBody(requestBody)) {
             return res.status(400).send({ status: false, message: "Please provide college data" })
         }
-
+        
         const { name, fullName, logoLink } = requestBody
 
         if (!isValid(name)) {
@@ -68,6 +57,7 @@ const createCollege = async function (req, res) {
     }
 }
 
+
 const getCollege = async function (req, res) {
     try {
         const queryParams = req.query
@@ -86,12 +76,15 @@ const getCollege = async function (req, res) {
         if (!isCollgePresent) {
             return res.status(404).send({ status: false, message: "invalid collegeName" })
         }
-
+    
+console.log(isCollgePresent)
         const collegeID = isCollgePresent._id
 
-        const intersByCollegeId = await internModel.find({ collegeId: collegeID, isDeleted: false }).select({ _id: 1, email: 1, name: 1, mobile: 1 })
+        let intersByCollegeId = await internModel.find({ collegeId: collegeID, isDeleted: false }).select({ _id: 1, email: 1, name: 1, mobile: 1 })
 
-
+if(intersByCollegeId.length===0){
+    intersByCollegeId="No interns In this college"
+}
         const { name, fullName, logoLink } = isCollgePresent
 
         const data = {
