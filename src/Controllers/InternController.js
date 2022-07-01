@@ -43,7 +43,6 @@ const createIntern = async function (req, res) {
             return res.status(400).send({ status: false, msg: "invalid mobile number" })
         }
         
-
         if (!isValid(collegeName)) {
             return res.status(400).send({ status: false, message: "collegeName must be provided" })
         }
