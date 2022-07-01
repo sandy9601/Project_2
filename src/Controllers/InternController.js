@@ -61,14 +61,14 @@ const createIntern = async function (req, res) {
             return res.status(400).send({ status: false, error: `${mobile} this number already exist` })
         }
 
-        const collegeNamePresent = await collegeModel.findOne({ fullName: collegeName, isDeleted: false })
+        const collegeNamePresent = await collegeModel.findOne({ name: collegeName, isDeleted: false })
 
         if (!collegeNamePresent) {
             return res.status(400).send({ status: false, message: `no college found by this name: ${collegeName}` })
         }
         const collegeID = collegeNamePresent._id
         requestBody["collegeId"] = collegeID;
-        
+    
         if (requestBody.isDeleted == true) {
             return res.status(400).send({ status: false, msg: "isDeleted must be false" })
         }
